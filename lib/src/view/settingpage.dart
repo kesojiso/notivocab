@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import '../constants.dart';
 import '../component/button.dart';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class SettingPage extends StatelessWidget {
+  const SettingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryColor,
+      appBar: AppBar(
+        title: Title(
+          color: primaryColor,
+          child: const Text('通知設定'),
+        ),
+      ),
       body: SafeArea(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Image.asset("asset/notivocab-icon.png", fit: BoxFit.fitWidth),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    defaultButton("コース別単語帳", () {}),
-                    defaultButton("My単語帳", () {}),
-                    defaultButton("通知設定", () {
-                      context.push('/settingpage');
-                    })
+                    defaultButton("通知時刻", () {}),
+                    defaultButton("出題範囲", () {}),
                   ],
                 ),
               )
