@@ -23,7 +23,7 @@ class MyHomePage extends StatelessWidget {
                     defaultButton("コース別単語帳", () {}),
                     defaultButton("My単語帳", () {}),
                     defaultButton("通知設定", () {
-                      context.push('/settingpage');
+                      context.push('/setting_notice');
                     })
                   ],
                 ),
