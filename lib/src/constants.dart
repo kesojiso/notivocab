@@ -35,3 +35,10 @@ const String userEndpoint = '/user';
 // Constants for app settings
 const int maxRetryAttempts = 3;
 const double defaultFontSize = 16.0;
+
+const List examScope = [
+  '初級',
+  '中級',
+  '上級',
+  'My単語帳',
+];
