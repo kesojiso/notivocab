@@ -32,7 +32,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/setting_word_section',
       builder: (BuildContext context, GoRouterState state) {
-        return const WordSection();
+        return const WordSectionSettingPage();
       },
     ),
     // 初級ページルート
