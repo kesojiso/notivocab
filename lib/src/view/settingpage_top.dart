@@ -25,7 +25,9 @@ class SettingPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    defaultButton("通知時刻", () {}),
+                    defaultButton("通知スケジュール", () {
+                      context.push('/setting_notice_schedule');
+                    }),
                     defaultButton("出題範囲", () {
                       context.push('/setting_word_section');
                     }),

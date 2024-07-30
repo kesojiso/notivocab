@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'view/homepage.dart';
 import 'view/settingpage_top.dart';
 import 'view/settingpage_word_section.dart';
+import 'view/settingpage_notice_schedule.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
@@ -23,9 +24,9 @@ final GoRouter router = GoRouter(
     ),
     // 通知時刻設定ページルート
     GoRoute(
-      path: '/setting_notice_time',
+      path: '/setting_notice_schedule',
       builder: (BuildContext context, GoRouterState state) {
-        return const SettingPage();
+        return const NoticeScheduleSettingPage();
       },
     ),
     // 出題範囲ページルート

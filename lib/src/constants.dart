@@ -36,9 +36,13 @@ const String userEndpoint = '/user';
 const int maxRetryAttempts = 3;
 const double defaultFontSize = 16.0;
 
-const List examScope = [
+const List<String> examScope = [
   '初級',
   '中級',
   '上級',
   'My単語帳',
+];
+
+const List<String> defaultNoticeSchedule = [
+  '12:00',
 ];
