@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../constants.dart';
-import '../component/button.dart';
+import '../../constants.dart';
+import '../../component/button.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});

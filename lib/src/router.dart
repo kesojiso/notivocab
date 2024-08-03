@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'view/homepage.dart';
-import 'view/settingpage_top.dart';
-import 'view/settingpage_word_section.dart';
-import 'view/settingpage_notice_schedule.dart';
+import 'view/notice_setting/settingpage_top.dart';
+import 'view/notice_setting/word_section/settingpage_word_section.dart';
+import 'view/notice_setting/notice_schedule/notice_schedule.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[

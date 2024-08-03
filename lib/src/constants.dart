@@ -26,7 +26,11 @@ const TextStyle normalTextStyle = TextStyle(
   fontSize: 16.0,
   color: primaryTextColor,
 );
-
+const TextStyle timerTextStyle = TextStyle(
+  fontSize: 30.0,
+  fontWeight: FontWeight.bold,
+  color: primaryTextColor,
+);
 // Constants for API endpoints
 const String baseUrl = 'https://api.example.com';
 const String loginEndpoint = '/login';
@@ -43,6 +47,9 @@ const List<String> examScope = [
   'My単語帳',
 ];
 
-const List<String> defaultNoticeSchedule = [
-  '12:00',
+const List<(String, String)> defaultNoticeSchedule = [
+  ('12', '00'),
 ];
+
+const noticeDoesNotSetWarningTitle = '※通知の時刻がセットされていません！';
+const noticeDoesNotSetWarningSubtitle = '通知時刻を追加して学習を始めましょう';

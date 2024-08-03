@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../constants.dart';
-import '../model/setting_word_section.dart';
+import '../../../constants.dart';
+import '../../../model/setting_word_section.dart';
 
 class WordSectionSettingPage extends ConsumerWidget {
   const WordSectionSettingPage({super.key});
