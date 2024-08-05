@@ -1,6 +1,8 @@
 // router.dart
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notivocab/src/view/words_level_entry.dart';
+import 'package:notivocab/src/view/words_level_page.dart';
 import 'view/homepage.dart';
 import 'view/notice_setting/settingpage_top.dart';
 import 'view/notice_setting/word_section/settingpage_word_section.dart';
@@ -21,42 +23,54 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         return const SettingPage();
       },
+      routes: [
+        // 通知時刻設定ページルート
+        GoRoute(
+          path: 'setting_notice_schedule',
+          builder: (BuildContext context, GoRouterState state) {
+            return const NoticeScheduleSettingPage();
+          },
+        ),
+        // 出題範囲ページルート
+        GoRoute(
+          path: 'setting_word_section',
+          builder: (BuildContext context, GoRouterState state) {
+            return const WordSectionSettingPage();
+          },
+        ),
+      ],
     ),
-    // 通知時刻設定ページルート
+    // コース別単語帳ページルート
     GoRoute(
-      path: '/setting_notice_schedule',
+      path: '/words_by_course',
       builder: (BuildContext context, GoRouterState state) {
-        return const NoticeScheduleSettingPage();
+        return const WordsByCourses();
       },
+      routes: [
+        // 初級ページルート
+        GoRoute(
+          path: 'words_level_entry',
+          builder: (BuildContext context, GoRouterState state) {
+            return const WordsLevelEntry();
+          },
+        ),
+        // 中級ページルート
+        GoRoute(
+          path: 'words_level_middle',
+          builder: (BuildContext context, GoRouterState state) {
+            return const SettingPage();
+          },
+        ),
+        // 上級ページルート
+        GoRoute(
+          path: 'words_level_advanced',
+          builder: (BuildContext context, GoRouterState state) {
+            return const SettingPage();
+          },
+        ),
+      ],
     ),
-    // 出題範囲ページルート
-    GoRoute(
-      path: '/setting_word_section',
-      builder: (BuildContext context, GoRouterState state) {
-        return const WordSectionSettingPage();
-      },
-    ),
-    // 初級ページルート
-    GoRoute(
-      path: '/words_level_entry',
-      builder: (BuildContext context, GoRouterState state) {
-        return const SettingPage();
-      },
-    ),
-    // 中級ページルート
-    GoRoute(
-      path: '/words_level_middle',
-      builder: (BuildContext context, GoRouterState state) {
-        return const SettingPage();
-      },
-    ),
-    // 上級ページルート
-    GoRoute(
-      path: '/words_level_high',
-      builder: (BuildContext context, GoRouterState state) {
-        return const SettingPage();
-      },
-    ),
+
     // My単語帳ページルート
     GoRoute(
       path: '/words_original',

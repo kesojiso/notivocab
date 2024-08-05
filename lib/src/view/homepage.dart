@@ -20,7 +20,9 @@ class MyHomePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    defaultButton("コース別単語帳", () {}),
+                    defaultButton("コース別単語帳", () {
+                      context.push('/words_by_course');
+                    }),
                     defaultButton("My単語帳", () {}),
                     defaultButton("通知設定", () {
                       context.push('/setting_notice');
