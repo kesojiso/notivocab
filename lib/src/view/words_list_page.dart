@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:notivocab/src/model/transact_db.dart';
 import '../constants.dart';
 import '../component/card.dart';
 
-class WordsLevelEntry extends StatelessWidget {
-  const WordsLevelEntry({super.key});
+class WordsListPage extends StatelessWidget {
+  final int section;
+  const WordsListPage({super.key, required this.section});
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +15,22 @@ class WordsLevelEntry extends StatelessWidget {
       appBar: AppBar(
         title: Title(
           color: primaryColor,
-          child: const Text('初級'),
+          child: Text('Section $section'),
         ),
       ),
       body: SafeArea(
         child: Center(
-          child: FutureBuilder<int>(
-            future: transactDB.returnSectionCount(),
-            builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+          child: FutureBuilder<List<Map<String, String>>>(
+            future: transactDB.returnWords(section),
+            builder: (BuildContext context,
+                AsyncSnapshot<List<Map<String, String>>> snapshot) {
               if (snapshot.hasData) {
                 return ListView.builder(
-                  itemCount: snapshot.data,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return defaultCard("Section ${index + 1}", () {
-                      context.push(
-                          '/words_by_course/words_level_entry/words_list_page',
-                          extra: index + 1);
+                    return wordCard(snapshot.data![index]['rank']!,
+                        snapshot.data![index]['word']!, () {
+                      //context.push('/words_by_course/words_level_entry/section/$index');
                     });
                   },
                 );

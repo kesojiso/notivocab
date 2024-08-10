@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:notivocab/src/view/words_level_entry.dart';
 import 'package:notivocab/src/view/words_level_page.dart';
+import 'package:notivocab/src/view/words_list_page.dart';
 import 'view/homepage.dart';
 import 'view/notice_setting/settingpage_top.dart';
 import 'view/notice_setting/word_section/settingpage_word_section.dart';
@@ -69,6 +70,15 @@ final GoRouter router = GoRouter(
           },
         ),
       ],
+    ),
+
+    // 単語一覧ページルート
+    GoRoute(
+      path: '/words_by_course/words_level_entry/words_list_page',
+      builder: (BuildContext context, GoRouterState state) {
+        final section = state.extra! as int;
+        return WordsListPage(section: section);
+      },
     ),
 
     // My単語帳ページルート

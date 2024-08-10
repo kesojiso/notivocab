@@ -5,10 +5,36 @@ Card defaultCard(String text, void Function()? onPressed) {
   return Card(
     color: buttonColor,
     child: ListTile(
-      leading: const Padding(
-          padding: EdgeInsets.fromLTRB(10, 0, 30, 0), child: Icon(Icons.book)),
-      title: Text(text, style: buttonTextStyle),
-      onTap: () {},
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Icon(Icons.book),
+          Text(text, style: buttonTextStyle),
+          const Icon(Icons.add_circle)
+        ],
+      ),
+      onTap: () {
+        onPressed!();
+      },
+    ),
+  );
+}
+
+Card wordCard(String index, String text, void Function()? onPressed) {
+  return Card(
+    color: buttonColor,
+    child: ListTile(
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text("$index:", style: buttonTextStyle),
+          Text(text, style: buttonTextStyle),
+          const Icon(Icons.arrow_forward_ios)
+        ],
+      ),
+      onTap: () {
+        onPressed!();
+      },
     ),
   );
 }

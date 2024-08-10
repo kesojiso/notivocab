@@ -31,11 +31,28 @@ class TransactDB {
     await readDataBase();
 
     if (db != null) {
-      final List<Map<String, dynamic>> maps =
-          await db!.query(tableName, columns: ['rank_seg'], distinct: true);
+      final List<Map<String, dynamic>> maps = await db!.rawQuery(
+          "SELECT DISTINCT rank_seg FROM $tableName ORDER BY rank_seg ASC");
       return maps.length;
     } else {
       return 0;
+    }
+  }
+
+  Future<List<Map<String, String>>> returnWords(int section) async {
+    await readDataBase();
+
+    if (db != null) {
+      final List<Map<String, dynamic>> maps = await db!.rawQuery(
+          "SELECT CAST(rank AS TEXT) AS rank, word FROM $tableName WHERE rank_seg = $section");
+      return List.generate(maps.length, (i) {
+        return {
+          'rank': maps[i]['rank'] as String,
+          'word': maps[i]['word'] as String
+        };
+      });
+    } else {
+      return [];
     }
   }
 }
