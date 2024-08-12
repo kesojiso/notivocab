@@ -19,6 +19,10 @@ class MyApp extends StatelessWidget {
     }
     return MaterialApp.router(
       routerConfig: router,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: "NotoSansJP",
+      ),
     );
   }
 }
