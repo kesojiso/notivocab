@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import '../constants.dart';
 import '../component/button.dart';
 
-class WordsByCourses extends StatelessWidget {
-  const WordsByCourses({super.key});
+class WordLevelPage extends StatelessWidget {
+  const WordLevelPage({super.key});
 
   @override
   Widget build(BuildContext context) {

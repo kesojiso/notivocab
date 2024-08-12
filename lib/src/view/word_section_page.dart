@@ -4,8 +4,8 @@ import 'package:notivocab/src/model/transact_db.dart';
 import '../constants.dart';
 import '../component/card.dart';
 
-class WordsLevelEntry extends StatelessWidget {
-  const WordsLevelEntry({super.key});
+class WordSectionPage extends StatelessWidget {
+  const WordSectionPage({super.key});
 
   @override
   Widget build(BuildContext context) {

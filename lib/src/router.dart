@@ -1,10 +1,10 @@
 // router.dart
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:notivocab/src/view/single_word_page.dart';
-import 'package:notivocab/src/view/words_level_entry.dart';
-import 'package:notivocab/src/view/words_level_page.dart';
-import 'package:notivocab/src/view/words_list_page.dart';
+import 'package:notivocab/src/view/word_detail_page.dart';
+import 'package:notivocab/src/view/word_section_page.dart';
+import 'package:notivocab/src/view/word_level_page.dart';
+import 'package:notivocab/src/view/word_list_page.dart';
 import 'view/homepage.dart';
 import 'view/notice_setting/settingpage_top.dart';
 import 'view/notice_setting/word_section/settingpage_word_section.dart';
@@ -46,14 +46,14 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/words_by_course',
       builder: (BuildContext context, GoRouterState state) {
-        return const WordsByCourses();
+        return const WordLevelPage();
       },
       routes: [
         // 初級ページルート
         GoRoute(
           path: 'words_level_entry',
           builder: (BuildContext context, GoRouterState state) {
-            return const WordsLevelEntry();
+            return const WordSectionPage();
           },
         ),
         // 中級ページルート
@@ -78,7 +78,7 @@ final GoRouter router = GoRouter(
       path: '/words_list_page',
       builder: (BuildContext context, GoRouterState state) {
         final section = state.extra! as int;
-        return WordsListPage(section: section);
+        return WordListPage(section: section);
       },
     ),
 
@@ -94,7 +94,7 @@ final GoRouter router = GoRouter(
       path: '/single_word_page',
       builder: (BuildContext context, GoRouterState state) {
         final index = state.extra! as int;
-        return SingleWordPage(
+        return WordDetailPage(
           index: index,
         );
       },

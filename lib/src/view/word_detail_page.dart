@@ -3,9 +3,9 @@ import 'package:notivocab/src/constants.dart';
 import 'package:notivocab/src/model/transact_db.dart';
 import 'package:notivocab/src/component/card.dart';
 
-class SingleWordPage extends StatelessWidget {
+class WordDetailPage extends StatelessWidget {
   final int index;
-  const SingleWordPage({super.key, required this.index});
+  const WordDetailPage({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
