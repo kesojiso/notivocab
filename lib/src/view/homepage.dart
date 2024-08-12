@@ -21,7 +21,7 @@ class MyHomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     defaultButton("コース別単語帳", () {
-                      context.push('/words_by_course');
+                      context.push('/word_level_page');
                     }),
                     defaultButton("My単語帳", () {}),
                     defaultButton("通知設定", () {

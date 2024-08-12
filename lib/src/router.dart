@@ -44,30 +44,16 @@ final GoRouter router = GoRouter(
     ),
     // コース別単語帳ページルート
     GoRoute(
-      path: '/words_by_course',
+      path: '/word_level_page',
       builder: (BuildContext context, GoRouterState state) {
         return const WordLevelPage();
       },
       routes: [
-        // 初級ページルート
+        // セクション別ページルート
         GoRoute(
-          path: 'words_level_entry',
+          path: 'word_section_page',
           builder: (BuildContext context, GoRouterState state) {
             return const WordSectionPage();
-          },
-        ),
-        // 中級ページルート
-        GoRoute(
-          path: 'words_level_middle',
-          builder: (BuildContext context, GoRouterState state) {
-            return const SettingPage();
-          },
-        ),
-        // 上級ページルート
-        GoRoute(
-          path: 'words_level_advanced',
-          builder: (BuildContext context, GoRouterState state) {
-            return const SettingPage();
           },
         ),
       ],
@@ -91,7 +77,7 @@ final GoRouter router = GoRouter(
     ),
     // 単語詳細ページルート
     GoRoute(
-      path: '/single_word_page',
+      path: '/word_detail_page',
       builder: (BuildContext context, GoRouterState state) {
         final index = state.extra! as int;
         return WordDetailPage(
