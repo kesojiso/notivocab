@@ -27,15 +27,20 @@ class TransactDB {
     }
   }
 
-  Future<int> returnSectionCount() async {
+  Future<List<int>> returnSectionCount(String level) async {
     await readDataBase();
 
     if (db != null) {
       final List<Map<String, dynamic>> maps = await db!.rawQuery(
-          "SELECT DISTINCT rank_seg FROM $tableName ORDER BY rank_seg ASC");
-      return maps.length;
+          "SELECT DISTINCT rank_seg, level FROM $tableName WHERE level = '$level' ORDER BY rank_seg ASC");
+      return List.generate(
+        maps.length,
+        (i) {
+          return maps[i]['rank_seg'] as int;
+        },
+      );
     } else {
-      return 0;
+      return [];
     }
   }
 

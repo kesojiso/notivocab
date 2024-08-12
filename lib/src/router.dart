@@ -53,7 +53,8 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'word_section_page',
           builder: (BuildContext context, GoRouterState state) {
-            return const WordSectionPage();
+            final level = state.extra! as String;
+            return WordSectionPage(level: level);
           },
         ),
       ],

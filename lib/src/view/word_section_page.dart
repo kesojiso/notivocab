@@ -5,7 +5,8 @@ import '../constants.dart';
 import '../component/card.dart';
 
 class WordSectionPage extends StatelessWidget {
-  const WordSectionPage({super.key});
+  final String level;
+  const WordSectionPage({super.key, required this.level});
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +16,21 @@ class WordSectionPage extends StatelessWidget {
       appBar: AppBar(
         title: Title(
           color: primaryColor,
-          child: const Text('初級'),
+          child: Text(level),
         ),
       ),
       body: SafeArea(
         child: Center(
-          child: FutureBuilder<int>(
-            future: transactDB.returnSectionCount(),
-            builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+          child: FutureBuilder<List<int>>(
+            future: transactDB.returnSectionCount(level),
+            builder: (BuildContext context, AsyncSnapshot<List<int>> snapshot) {
               if (snapshot.hasData) {
                 return ListView.builder(
-                  itemCount: snapshot.data,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return defaultCard("Section ${index + 1}", () {
-                      context.push('/words_list_page', extra: index + 1);
+                    return defaultCard("Section ${snapshot.data![index]}", () {
+                      context.push('/words_list_page',
+                          extra: snapshot.data![index]);
                     });
                   },
                 );

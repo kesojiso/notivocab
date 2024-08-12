@@ -26,13 +26,16 @@ class WordLevelPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     defaultButton("初級", () {
-                      context.push('/word_level_page/word_section_page');
+                      context.push('/word_level_page/word_section_page',
+                          extra: "entry");
                     }),
                     defaultButton("中級", () {
-                      // context.push('/word_level_page/words_level_middle');
+                      context.push('/word_level_page/word_section_page',
+                          extra: "intermediate");
                     }),
                     defaultButton("上級", () {
-                      // context.push('/word_level_page/words_level_advanced');
+                      context.push('/word_level_page/word_section_page',
+                          extra: "advanced");
                     }),
                   ],
                 ),
