@@ -28,9 +28,7 @@ class WordsLevelEntry extends StatelessWidget {
                   itemCount: snapshot.data,
                   itemBuilder: (BuildContext context, int index) {
                     return defaultCard("Section ${index + 1}", () {
-                      context.push(
-                          '/words_by_course/words_level_entry/words_list_page',
-                          extra: index + 1);
+                      context.push('/words_list_page', extra: index + 1);
                     });
                   },
                 );

@@ -75,7 +75,7 @@ final GoRouter router = GoRouter(
 
     // 単語一覧ページルート
     GoRoute(
-      path: '/words_by_course/words_level_entry/words_list_page',
+      path: '/words_list_page',
       builder: (BuildContext context, GoRouterState state) {
         final section = state.extra! as int;
         return WordsListPage(section: section);
@@ -91,8 +91,7 @@ final GoRouter router = GoRouter(
     ),
     // 単語詳細ページルート
     GoRoute(
-      path:
-          '/words_by_course/words_level_entry/words_list_page/single_word_page',
+      path: '/single_word_page',
       builder: (BuildContext context, GoRouterState state) {
         final index = state.extra! as int;
         return SingleWordPage(
