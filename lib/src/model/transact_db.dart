@@ -20,7 +20,7 @@ class TransactDB {
       db = await openDatabase(
         targetDBPath,
         version: 1,
-        readOnly: true,
+        readOnly: false,
       );
     } catch (e) {
       debugPrint("READ_DB_ERROR: $e");
@@ -39,20 +39,38 @@ class TransactDB {
     }
   }
 
-  Future<List<Map<String, String>>> returnWords(int section) async {
+  Future<List<Map<String, dynamic>>> returnWords(int section) async {
     await readDataBase();
 
     if (db != null) {
       final List<Map<String, dynamic>> maps = await db!.rawQuery(
-          "SELECT CAST(rank AS TEXT) AS rank, word FROM $tableName WHERE rank_seg = $section");
+          "SELECT CAST(rank AS INT) AS rank, word FROM $tableName WHERE rank_seg = $section");
       return List.generate(maps.length, (i) {
         return {
-          'rank': maps[i]['rank'] as String,
+          'rank': maps[i]['rank'] as int,
           'word': maps[i]['word'] as String
         };
       });
     } else {
       return [];
+    }
+  }
+
+  Future<Map<String, dynamic>> getWordInfo(int index) async {
+    await readDataBase();
+
+    if (db != null) {
+      final List<Map<String, dynamic>> maps =
+          await db!.rawQuery("SELECT * FROM $tableName WHERE rank = $index");
+      final Map<String, dynamic> map = maps[0];
+      return {
+        'word': map['word'] as String,
+        'word_japanese': map['word_japanese'] as String,
+        'pos_full': map['pos_full'] as String,
+        'pronounce': map['pronounce'] as String,
+      };
+    } else {
+      return {};
     }
   }
 }

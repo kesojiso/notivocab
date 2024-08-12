@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:notivocab/src/model/transact_db.dart';
 import '../constants.dart';
 import '../component/card.dart';
@@ -20,17 +21,20 @@ class WordsListPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Center(
-          child: FutureBuilder<List<Map<String, String>>>(
+          child: FutureBuilder<List<Map<String, dynamic>>>(
             future: transactDB.returnWords(section),
             builder: (BuildContext context,
-                AsyncSnapshot<List<Map<String, String>>> snapshot) {
+                AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
               if (snapshot.hasData) {
                 return ListView.builder(
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return wordCard(snapshot.data![index]['rank']!,
+                    return wordsListCard(snapshot.data![index]['rank']!,
                         snapshot.data![index]['word']!, () {
-                      //context.push('/words_by_course/words_level_entry/section/$index');
+                      context.push(
+                        '/words_by_course/words_level_entry/words_list_page/single_word_page',
+                        extra: snapshot.data![index]['rank']!,
+                      );
                     });
                   },
                 );

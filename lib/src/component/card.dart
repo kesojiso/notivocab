@@ -20,7 +20,7 @@ Card defaultCard(String text, void Function()? onPressed) {
   );
 }
 
-Card wordCard(String index, String text, void Function()? onPressed) {
+Card wordsListCard(int index, String text, void Function()? onPressed) {
   return Card(
     color: buttonColor,
     child: ListTile(
@@ -35,6 +35,50 @@ Card wordCard(String index, String text, void Function()? onPressed) {
       onTap: () {
         onPressed!();
       },
+    ),
+  );
+}
+
+Card singleWordCard(
+  int index,
+  String word,
+  String wordJapanese,
+  String posFull,
+  String pronounce,
+) {
+  return Card(
+    color: buttonColor,
+    child: ListTile(
+      title: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                word,
+                style: textStyleXL,
+                softWrap: true,
+              ),
+            ],
+          ),
+          Text(
+            pronounce,
+            style: textStylePronounce,
+            softWrap: true,
+          ),
+          const SizedBox(height: 20),
+          Container(
+              decoration:
+                  BoxDecoration(border: Border.all(color: Colors.black)),
+              child: Text(posFull, style: buttonTextStyle)),
+          const SizedBox(height: 20),
+          Text(
+            wordJapanese,
+            style: textStyleL,
+            softWrap: true,
+          ),
+        ],
+      ),
     ),
   );
 }

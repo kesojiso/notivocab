@@ -12,6 +12,31 @@ const Color nonActiveColor = Color(0xFF575653);
 const Color primaryTextColor = Color(0xFF000000);
 
 // Constants for text styles
+const TextStyle textStyleXL = TextStyle(
+  fontSize: 40.0,
+  fontWeight: FontWeight.bold,
+  color: primaryTextColor,
+);
+
+const TextStyle textStyleLL = TextStyle(
+  fontSize: 32.0,
+  fontWeight: FontWeight.bold,
+  color: primaryTextColor,
+);
+
+const TextStyle textStyleL = TextStyle(
+  fontSize: 24.0,
+  fontWeight: FontWeight.bold,
+  color: primaryTextColor,
+);
+
+const TextStyle textStylePronounce = TextStyle(
+  fontSize: 24.0,
+  fontWeight: FontWeight.bold,
+  color: primaryTextColor,
+  fontFamilyFallback: ['NotoSans', 'Roboto'],
+);
+
 const TextStyle headerTextStyle = TextStyle(
   fontSize: 24.0,
   fontWeight: FontWeight.bold,
