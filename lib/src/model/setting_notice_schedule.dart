@@ -40,7 +40,7 @@ class NoticeScheduleNotifier extends StateNotifier<NoticeScheduleState> {
   }
 
   bool appendSchedule((String, String) appendedTime) {
-    List<(String, String)> noticeSchedule = state.noticeSchedule;
+    List<(String, String)> noticeSchedule = List.from(state.noticeSchedule);
     if (!_validateAppendSchedule(appendedTime)) {
       return false;
     }
@@ -63,7 +63,7 @@ class NoticeScheduleNotifier extends StateNotifier<NoticeScheduleState> {
   }
 
   void remoevSchedule((String, String) removedTime) {
-    List<(String, String)> noticeSchedule = state.noticeSchedule;
+    List<(String, String)> noticeSchedule = List.from(state.noticeSchedule);
     noticeSchedule.remove(removedTime);
     noticeSchedule.sort((a, b) {
       int result = a.$1.compareTo(b.$1);
