@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notivocab/src/constants.dart';
-import 'package:notivocab/src/model/copy_db_from_asset.dart';
+import 'package:notivocab/src/controller/copy_db_from_asset.dart';
 import 'src/router.dart';
 
 void main() {

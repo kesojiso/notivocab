@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notivocab/src/constants.dart';
 import 'package:notivocab/src/model/transact_db.dart';
-import 'package:notivocab/src/component/card.dart';
+import 'package:notivocab/src/view/component/card.dart';
 
 class WordDetailPage extends StatelessWidget {
   final int index;

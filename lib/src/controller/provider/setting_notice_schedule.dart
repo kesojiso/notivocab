@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notivocab/src/constants.dart';
-import 'access_shared_preference.dart';
+import '../access_shared_preference.dart';
 
 final noticeScheduleProvider =
     StateNotifierProvider<NoticeScheduleNotifier, NoticeScheduleState>((ref) {

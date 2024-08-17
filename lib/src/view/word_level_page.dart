@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../constants.dart';
-import '../component/button.dart';
+import 'component/button.dart';
 
 class WordLevelPage extends StatelessWidget {
   const WordLevelPage({super.key});

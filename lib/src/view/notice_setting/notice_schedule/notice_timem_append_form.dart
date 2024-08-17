@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../constants.dart';
 import 'schedle_dropdown_menu.dart';
-import '../../../model/setting_notice_schedule.dart';
-import '../../../model/setting_notice_schedule_input_form.dart';
+import '../../../controller/provider/setting_notice_schedule.dart';
+import '../../../controller/provider/setting_notice_schedule_input_form.dart';
 
 class NoticeTimeAppendForm extends ConsumerWidget {
   const NoticeTimeAppendForm({super.key});

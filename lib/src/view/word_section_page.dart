@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:notivocab/src/model/transact_db.dart';
 import '../constants.dart';
-import '../component/card.dart';
+import 'component/card.dart';
 
 class WordSectionPage extends StatelessWidget {
   final String level;

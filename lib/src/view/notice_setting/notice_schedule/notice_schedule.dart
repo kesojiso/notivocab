@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../constants.dart';
-import '../../../model/setting_notice_schedule.dart';
-import '../../../component/warningbox.dart';
+import '../../../controller/provider/setting_notice_schedule.dart';
+import '../../component/warningbox.dart';
 import 'notice_timem_append_form.dart';
 
 class NoticeScheduleSettingPage extends ConsumerWidget {
