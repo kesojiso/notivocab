@@ -1,14 +1,14 @@
-# notivocab
+# notivocab(通知で覚える英単語アプリ)
 
-## Getting Started
+## 概要
+英単語をランダムで決められた時刻にpush通知を出すことで、ユーザに英単語を強制的に学習させるアプリ
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## 画面遷移
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### ホーム画面
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### コース別英単語帳(NGSLv2.1の単語リスト)
+
+### 通知設定画面
+
