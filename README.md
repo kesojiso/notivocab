@@ -4,7 +4,13 @@
 英単語をランダムで決められた時刻にpush通知を出すことで、ユーザに英単語を強制的に学習させるアプリ
 
 
+
+
 ## 画面一覧
+
+### Figmaでの遷移検討
+<img src="https://github.com/user-attachments/assets/a411d609-e236-4dc4-8208-5651a8f3af91" width="1000">
+
 
 ### ホーム画面
 <img src="https://github.com/user-attachments/assets/ae7c8e84-f2c5-4ba5-9c80-cf05ecc9cd90" width="300">
