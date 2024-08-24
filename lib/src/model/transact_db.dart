@@ -78,4 +78,18 @@ class TransactDB {
       return {};
     }
   }
+
+  Future<List<String>> getRandomWords(List sectionList, int getNum) async {
+    await readDataBase();
+
+    if (db == null) {
+      return [];
+    }
+    final List<Map<String, dynamic>> result = await db!.rawQuery(
+        "SELECT word FROM $tableName WHERE rank_seg IN (${sectionList.join(',')}) ORDER BY RANDOM() LIMIT $getNum");
+    if (result.isNotEmpty) {
+      return result.map((map) => map['word'] as String).toList();
+    }
+    return [];
+  }
 }
