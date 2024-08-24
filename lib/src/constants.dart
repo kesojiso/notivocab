@@ -85,3 +85,5 @@ const noticeDoesNotSetWarningSubtitle = '通知時刻を追加して学習を始
 const List<String> assetDBList = [
   "ngsl_v1_2.db",
 ];
+
+const getNum = 50;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:notivocab/src/controller/create_notification.dart';
 import '../../../constants.dart';
 import '../../../controller/provider/setting_notice_schedule.dart';
 import '../../component/warningbox.dart';
@@ -66,7 +67,9 @@ class NoticeScheduleSettingPage extends ConsumerWidget {
                                   ],
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                setNotificationList();
+                              },
                             ),
                           );
                         },
