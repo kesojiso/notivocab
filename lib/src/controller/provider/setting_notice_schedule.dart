@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notivocab/src/constants.dart';
 import '../access_shared_preference.dart';
 
+// TODO: sharedPreferenceではなくDBで管理する
+
 final noticeScheduleProvider =
     StateNotifierProvider<NoticeScheduleNotifier, NoticeScheduleState>((ref) {
   return NoticeScheduleNotifier();

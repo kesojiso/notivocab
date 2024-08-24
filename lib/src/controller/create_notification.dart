@@ -1,7 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:notivocab/src/controller/access_shared_preference.dart';
-import 'package:notivocab/src/model/transact_db.dart';
+import 'package:notivocab/src/model/transact_words_db.dart';
 import 'package:notivocab/src/constants.dart';
 
 const notifyNum = 100;
@@ -15,7 +15,7 @@ const notifyNum = 100;
 Future<void> setNotificationList() async {
   final dynamic sectionList =
       await SharedPreferencesService().getValue('examScope');
-  final TransactDB transactDB = TransactDB("ngsl_v1_2.db", "words");
+  final TransactWordsDB transactDB = TransactWordsDB("ngsl_v1_2.db", "words");
   final List<String> wordsList =
       await transactDB.getRandomWords(sectionList, getNum);
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notivocab/src/constants.dart';
-import 'package:notivocab/src/model/transact_db.dart';
+import 'package:notivocab/src/model/transact_words_db.dart';
 import 'package:notivocab/src/view/component/card.dart';
 
 class WordDetailPage extends StatelessWidget {
@@ -9,7 +9,7 @@ class WordDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TransactDB transactDB = TransactDB("ngsl_v1_2.db", "words");
+    TransactWordsDB transactDB = TransactWordsDB("ngsl_v1_2.db", "words");
     return Scaffold(
       backgroundColor: primaryColor,
       body: SafeArea(

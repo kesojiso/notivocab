@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notivocab/src/constants.dart';
 import '../access_shared_preference.dart';
 
+// TODO: sharedPreferenceではなくDBで管理する
+
 final scopeSelectedProvider =
     StateNotifierProvider<ScopeSelectedNotifier, ScopeSelectedState>((ref) {
   return ScopeSelectedNotifier();
