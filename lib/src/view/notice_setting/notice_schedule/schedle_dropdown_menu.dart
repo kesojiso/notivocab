@@ -13,8 +13,8 @@ class ScheduleInputForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final hour = ref.watch(noticeHourMinuteProvider).hour;
-    final minute = ref.watch(noticeHourMinuteProvider).minute;
+    final hour = ref.watch(noticeScheduleInputFormProvider).hour;
+    final minute = ref.watch(noticeScheduleInputFormProvider).minute;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -24,7 +24,7 @@ class ScheduleInputForm extends ConsumerWidget {
           value: hour,
           onChanged: (String? value) {
             ref
-                .read(noticeHourMinuteProvider.notifier)
+                .read(noticeScheduleInputFormProvider.notifier)
                 .updateSchedule(value, minute);
           },
         ),
@@ -36,7 +36,7 @@ class ScheduleInputForm extends ConsumerWidget {
           value: minute,
           onChanged: (String? value) {
             ref
-                .read(noticeHourMinuteProvider.notifier)
+                .read(noticeScheduleInputFormProvider.notifier)
                 .updateSchedule(hour, value);
           },
         ),
