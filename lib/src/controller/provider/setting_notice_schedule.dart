@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notivocab/src/constants.dart';
-import '../access_shared_preference.dart';
+import 'package:notivocab/src/model/schema/schema_notice_schedule.dart';
+import 'package:notivocab/src/model/transact_notice_schedule_db.dart';
 
 final noticeScheduleProvider =
     StateNotifierProvider<NoticeScheduleNotifier, NoticeScheduleState>((ref) {
@@ -8,76 +8,82 @@ final noticeScheduleProvider =
 });
 
 class NoticeScheduleState {
-  List<(String, String)> noticeSchedule;
-  NoticeScheduleState({this.noticeSchedule = const []});
+  List<NoticeSchedule> noticeScheduleList;
+  NoticeScheduleState({this.noticeScheduleList = const []});
 
-  NoticeScheduleState copyWith({List<(String, String)>? noticeSchedule}) {
+  NoticeScheduleState copyWith({List<NoticeSchedule>? noticeScheduleList}) {
     return NoticeScheduleState(
-      noticeSchedule: noticeSchedule ?? this.noticeSchedule,
+      noticeScheduleList: noticeScheduleList ?? this.noticeScheduleList,
     );
   }
 }
 
 class NoticeScheduleNotifier extends StateNotifier<NoticeScheduleState> {
-  final SharedPreferencesService _sharedPreferencesService =
-      SharedPreferencesService();
+  final TransactNoticeScheduleDB _transactNoticeScheduleDB =
+      TransactNoticeScheduleDB();
 
   NoticeScheduleNotifier() : super(NoticeScheduleState()) {
     _loadInitialNoticeSchedule();
   }
 
   Future<void> _loadInitialNoticeSchedule() async {
-    final List<String>? noticeScheduleStr =
-        await _sharedPreferencesService.getValue('noticeSchedule');
-    if (noticeScheduleStr == null) {
-      state = NoticeScheduleState(noticeSchedule: defaultNoticeSchedule);
-      return;
-    }
-    final List<(String, String)> noticeSchedule = noticeScheduleStr
-        .map((e) => (e.split(':')[0], e.split(':')[1]))
-        .toList();
-    state = NoticeScheduleState(noticeSchedule: noticeSchedule);
+    final List<NoticeSchedule> noticeScheduleList =
+        await _transactNoticeScheduleDB.getValues();
+
+    state = NoticeScheduleState(noticeScheduleList: noticeScheduleList);
   }
 
-  bool appendSchedule((String, String) appendedTime) {
-    List<(String, String)> noticeSchedule = List.from(state.noticeSchedule);
+  bool appendSchedule((String, String) appendedTimeStr) {
+    List<NoticeSchedule> noticeScheduleList =
+        List.from(state.noticeScheduleList);
+    NoticeSchedule appendedTime = NoticeSchedule(
+      hour: int.parse(appendedTimeStr.$1),
+      minute: int.parse(appendedTimeStr.$2),
+    );
     if (!_validateAppendSchedule(appendedTime)) {
       return false;
     }
-    noticeSchedule.add(appendedTime);
-    noticeSchedule.sort((a, b) {
-      int result = a.$1.compareTo(b.$1);
+    noticeScheduleList.add(appendedTime);
+    noticeScheduleList.sort((a, b) {
+      int result = a.hour!.compareTo(b.hour!);
       if (result != 0) return result;
-      return a.$2.compareTo(b.$2);
+      return a.minute!.compareTo(b.minute!);
     });
-    state = state.copyWith(noticeSchedule: noticeSchedule);
+    state = state.copyWith(noticeScheduleList: noticeScheduleList);
     return true;
   }
 
-  bool _validateAppendSchedule((String, String) appendedTime) {
-    List<(String, String)> noticeSchedule = state.noticeSchedule;
-    if (noticeSchedule.contains(appendedTime)) {
+  bool _validateAppendSchedule(NoticeSchedule appendedTime) {
+    List<NoticeSchedule> noticeScheduleList = state.noticeScheduleList;
+    if (noticeScheduleList.contains(appendedTime)) {
       return false;
     }
     return true;
   }
 
-  void remoevSchedule((String, String) removedTime) {
-    List<(String, String)> noticeSchedule = List.from(state.noticeSchedule);
-    noticeSchedule.remove(removedTime);
-    noticeSchedule.sort((a, b) {
-      int result = a.$1.compareTo(b.$1);
+  List<NoticeSchedule> sortSchedule(List<NoticeSchedule> noticeScheduleList) {
+    noticeScheduleList.sort((a, b) {
+      int result = a.hour!.compareTo(b.hour!);
       if (result != 0) return result;
-      return a.$2.compareTo(b.$2);
+      return a.minute!.compareTo(b.minute!);
     });
-    state = state.copyWith(noticeSchedule: noticeSchedule);
+    return noticeScheduleList;
+  }
+
+  void remoevSchedule(NoticeSchedule removedTime) {
+    List<NoticeSchedule> noticeScheduleList =
+        List.from(state.noticeScheduleList);
+    noticeScheduleList.remove(removedTime);
+    noticeScheduleList.sort((a, b) {
+      int result = a.hour!.compareTo(b.hour!);
+      if (result != 0) return result;
+      return a.minute!.compareTo(b.minute!);
+    });
+    state = state.copyWith(noticeScheduleList: noticeScheduleList);
   }
 
   Future<void> setNoticeSchedule() async {
-    final List<(String, String)> noticeSchedule = state.noticeSchedule;
-    final List<String> noticeScheduleStr =
-        noticeSchedule.map((e) => '${e.$1}:${e.$2}').toList();
-    await _sharedPreferencesService.setValue(
-        'noticeSchedule', noticeScheduleStr);
+    final List<NoticeSchedule> noticeScheduleList = state.noticeScheduleList;
+    await _transactNoticeScheduleDB.updateDB(noticeScheduleList);
   }
 }

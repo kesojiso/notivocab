@@ -37,8 +37,8 @@ class NoticeTimeAppendForm extends ConsumerWidget {
                           bool ans = ref
                               .read(noticeScheduleProvider.notifier)
                               .appendSchedule((
-                            ref.watch(noticeHourMinuteProvider).hour,
-                            ref.watch(noticeHourMinuteProvider).minute
+                            ref.watch(noticeScheduleInputFormProvider).hour,
+                            ref.watch(noticeScheduleInputFormProvider).minute
                           ));
                           if (!ans) {
                             ScaffoldMessenger.of(context)
@@ -46,7 +46,7 @@ class NoticeTimeAppendForm extends ConsumerWidget {
                             return;
                           }
                           Navigator.pop(context);
-                          ref.invalidate(noticeHourMinuteProvider);
+                          ref.invalidate(noticeScheduleInputFormProvider);
                         },
                       ),
                     ],

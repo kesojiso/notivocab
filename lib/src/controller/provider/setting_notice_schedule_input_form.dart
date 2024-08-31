@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final noticeHourMinuteProvider = StateNotifierProvider<
+final noticeScheduleInputFormProvider = StateNotifierProvider<
     NoticeScheduleInputFormNotifier, NoticeScheduleInputFormState>((ref) {
   return NoticeScheduleInputFormNotifier();
 });

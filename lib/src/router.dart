@@ -7,7 +7,7 @@ import 'package:notivocab/src/view/word_level_page.dart';
 import 'package:notivocab/src/view/word_list_page.dart';
 import 'view/homepage.dart';
 import 'view/notice_setting/settingpage_top.dart';
-import 'view/notice_setting/word_section/settingpage_word_section.dart';
+import 'view/notice_setting/word_section/settingpage_quiz_scope.dart';
 import 'view/notice_setting/notice_schedule/notice_schedule.dart';
 
 final GoRouter router = GoRouter(
@@ -35,9 +35,9 @@ final GoRouter router = GoRouter(
         ),
         // 出題範囲ページルート
         GoRoute(
-          path: 'setting_word_section',
+          path: 'setting_quiz_scope',
           builder: (BuildContext context, GoRouterState state) {
-            return const WordSectionSettingPage();
+            return const QuizScopeSettingPage();
           },
         ),
       ],

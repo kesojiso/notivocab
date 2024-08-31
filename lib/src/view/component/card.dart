@@ -82,3 +82,27 @@ Card singleWordCard(
     ),
   );
 }
+
+Padding quizScopeCard(
+    {required bool checked,
+    required String title,
+    required void Function(bool?)? onChanged}) {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+    child: Card(
+      color: checked ? buttonColor : nonActiveColor,
+      child: CheckboxListTile(
+          value: checked,
+          title: SizedBox(
+            height: 80,
+            child: Center(
+              child: Text(
+                title,
+                style: buttonTextStyle,
+              ),
+            ),
+          ),
+          onChanged: onChanged),
+    ),
+  );
+}

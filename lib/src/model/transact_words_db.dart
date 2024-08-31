@@ -3,11 +3,11 @@ import 'package:notivocab/src/controller/copy_db_from_asset.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class TransactDB {
+class TransactWordsDB {
   final String dbName;
   final String tableName;
   Database? db;
-  TransactDB(this.dbName, this.tableName);
+  TransactWordsDB(this.dbName, this.tableName);
 
   Future<void> readDataBase() async {
     try {
@@ -64,18 +64,34 @@ class TransactDB {
   Future<Map<String, dynamic>> getWordInfo(int index) async {
     await readDataBase();
 
-    if (db != null) {
-      final List<Map<String, dynamic>> maps =
-          await db!.rawQuery("SELECT * FROM $tableName WHERE rank = $index");
-      final Map<String, dynamic> map = maps[0];
+    if (db == null) {
+      return {};
+    }
+    final List<Map<String, dynamic>> result =
+        await db!.rawQuery("SELECT * FROM $tableName WHERE rank = $index");
+    if (result.isNotEmpty) {
+      final Map<String, dynamic> map = result[0];
       return {
         'word': map['word'] as String,
         'word_japanese': map['word_japanese'] as String,
         'pos_full': map['pos_full'] as String,
         'pronounce': map['pronounce'] as String,
       };
-    } else {
-      return {};
     }
+    return {};
+  }
+
+  Future<List<String>> getRandomWords(List sectionList, int getNum) async {
+    await readDataBase();
+
+    if (db == null) {
+      return [];
+    }
+    final List<Map<String, dynamic>> result = await db!.rawQuery(
+        "SELECT word FROM $tableName WHERE level IN (${sectionList.join(',')}) ORDER BY RANDOM() LIMIT $getNum");
+    if (result.isNotEmpty) {
+      return result.map((map) => map['word'] as String).toList();
+    }
+    return [];
   }
 }

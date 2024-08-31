@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:notivocab/src/controller/create_notification.dart';
 import '../../../constants.dart';
 import '../../../controller/provider/setting_notice_schedule.dart';
 import '../../component/warningbox.dart';
@@ -11,7 +12,8 @@ class NoticeScheduleSettingPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final noticeScheduleList = ref.watch(noticeScheduleProvider).noticeSchedule;
+    final noticeScheduleList =
+        ref.watch(noticeScheduleProvider).noticeScheduleList;
     return PopScope(
       onPopInvoked: (bool result) {
         ref.invalidate(noticeScheduleProvider);
@@ -50,7 +52,7 @@ class NoticeScheduleSettingPage extends ConsumerWidget {
                                   children: [
                                     const SizedBox(),
                                     Text(
-                                      '${noticeScheduleList[index].$1} : ${noticeScheduleList[index].$2}',
+                                      '${noticeScheduleList[index].hour.toString().padLeft(2, '0')} : ${noticeScheduleList[index].minute.toString().padLeft(2, '0')}',
                                       style: timerTextStyle,
                                     ),
                                     GestureDetector(
@@ -66,7 +68,9 @@ class NoticeScheduleSettingPage extends ConsumerWidget {
                                   ],
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                setNotificationList();
+                              },
                             ),
                           );
                         },

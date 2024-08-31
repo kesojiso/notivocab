@@ -29,7 +29,7 @@ class SettingPage extends StatelessWidget {
                       context.push('/setting_notice/setting_notice_schedule');
                     }),
                     defaultButton("出題範囲", () {
-                      context.push('/setting_notice/setting_word_section');
+                      context.push('/setting_notice/setting_quiz_scope');
                     }),
                   ],
                 ),

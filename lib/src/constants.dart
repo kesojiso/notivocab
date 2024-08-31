@@ -79,9 +79,8 @@ const List<(String, String)> defaultNoticeSchedule = [
 const noticeDoesNotSetWarningTitle = '※通知の時刻がセットされていません！';
 const noticeDoesNotSetWarningSubtitle = '通知時刻を追加して学習を始めましょう';
 
-// const dbSchema =
-//     "rank INTEGER PRIMARY KEY, rank_seg INTEGER, word TEXT, word_japanese TEXT, pos_full TEXT, pronounce TEXT";
-
 const List<String> assetDBList = [
   "ngsl_v1_2.db",
 ];
+
+const getNum = 50;
