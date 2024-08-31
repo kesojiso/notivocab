@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notivocab/src/base_class.dart';
+import 'package:notivocab/src/model/schema/schema_quiz_scope.dart';
 import 'package:notivocab/src/model/transact_quiz_scope_db.dart';
 
 final scopeSelectedProvider =

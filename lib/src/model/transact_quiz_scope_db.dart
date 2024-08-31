@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'package:notivocab/src/base_class.dart';
+import 'package:notivocab/src/model/schema/schema_quiz_scope.dart';
 
 class TransactQuizScopeDB {
   // 唯一のインスタンスを保持する静的な変数
