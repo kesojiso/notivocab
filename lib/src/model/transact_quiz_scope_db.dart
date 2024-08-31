@@ -22,23 +22,29 @@ class TransactQuizScopeDB {
     try {
       final String dbPath = await getDatabasesPath();
       final String targetDBPath = join(dbPath, "setting.db");
-      final bool dbExistFlg = await databaseExists(targetDBPath);
-      if (!dbExistFlg) {
-        db = await openDatabase(
-          targetDBPath,
-          version: 1,
-          onCreate: (Database db, int version) async {
-            await db.execute(
-              "CREATE TABLE setting_quiz_scope ("
-              "id INTEGER PRIMARY KEY,"
-              "entry INTEGER NOT NULL,"
-              "intermediate INTEGER NOT NULL,"
-              "advanced INTEGER NOT NULL,"
-              "my_word_list INTEGER NOT NULL"
-              ")",
-            );
-          },
+
+      // データベースを開く
+      db = await openDatabase(
+        targetDBPath,
+        version: 1,
+      );
+
+      // テーブルが存在するかを確認
+      bool tableExists = await doesTableExist(db!, "setting_quiz_scope");
+
+      if (!tableExists) {
+        // テーブルが存在しない場合のみ作成
+        await db!.execute(
+          "CREATE TABLE setting_quiz_scope ("
+          "id INTEGER PRIMARY KEY,"
+          "entry INTEGER NOT NULL,"
+          "intermediate INTEGER NOT NULL,"
+          "advanced INTEGER NOT NULL,"
+          "my_word_list INTEGER NOT NULL"
+          ")",
         );
+
+        // 初期データを挿入
         await db!.insert("setting_quiz_scope", {
           "id": 999,
           "entry": 1,
@@ -46,17 +52,16 @@ class TransactQuizScopeDB {
           "advanced": 1,
           "my_word_list": 0,
         });
-      } else {
-        // データベースが存在する場合は再度開く
-        db = await openDatabase(
-          targetDBPath,
-          version: 1,
-          readOnly: false,
-        );
       }
     } catch (e) {
       debugPrint("READ_DB_ERROR: $e");
     }
+  }
+
+  Future<bool> doesTableExist(Database db, String tableName) async {
+    var res = await db.rawQuery(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='$tableName'");
+    return res.isNotEmpty;
   }
 
   Future<void> updateDB(QuizScope quizScope) async {
