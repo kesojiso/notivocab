@@ -85,6 +85,7 @@ class NoticeScheduleSettingPage extends ConsumerWidget {
             onPressed: () {
               ref.read(noticeScheduleProvider.notifier).setNoticeSchedule();
               ref.invalidate(noticeScheduleProvider);
+              setNotificationList();
               context.pop();
             },
             child: const Icon(Icons.save, color: primaryColor, size: 40)),

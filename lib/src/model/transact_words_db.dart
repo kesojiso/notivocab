@@ -88,7 +88,7 @@ class TransactWordsDB {
       return [];
     }
     final List<Map<String, dynamic>> result = await db!.rawQuery(
-        "SELECT word FROM $tableName WHERE level IN (${sectionList.join(',')}) ORDER BY RANDOM() LIMIT $getNum");
+        "SELECT word FROM $tableName WHERE level IN ('${sectionList.join('\',\'')}') ORDER BY RANDOM() LIMIT $getNum");
     if (result.isNotEmpty) {
       return result.map((map) => map['word'] as String).toList();
     }
