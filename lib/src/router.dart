@@ -10,7 +10,10 @@ import 'view/notice_setting/settingpage_top.dart';
 import 'view/notice_setting/word_section/settingpage_quiz_scope.dart';
 import 'view/notice_setting/notice_schedule/notice_schedule.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 final GoRouter router = GoRouter(
+  navigatorKey: navigatorKey,
   routes: <RouteBase>[
     // デフォルトのホームページルート
     GoRoute(
@@ -78,9 +81,10 @@ final GoRouter router = GoRouter(
     ),
     // 単語詳細ページルート
     GoRoute(
-      path: '/word_detail_page',
+      path: '/word_detail_page/:index',
       builder: (BuildContext context, GoRouterState state) {
-        final index = state.extra! as int;
+        // pathParameters['index'] を int に変換できない場合は 0 とする
+        final index = int.tryParse(state.pathParameters['index'] ?? '0') ?? 0;
         return WordDetailPage(
           index: index,
         );

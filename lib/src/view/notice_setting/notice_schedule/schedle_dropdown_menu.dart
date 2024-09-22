@@ -6,7 +6,7 @@ import '../../../controller/provider/setting_notice_schedule_input_form.dart';
 final List<String> hours =
     List.generate(24, (index) => index.toString().padLeft(2, '0'));
 final List<String> minutes =
-    List.generate(6, (index) => (index * 10).toString().padLeft(2, '0'));
+    List.generate(60, (index) => index.toString().padLeft(2, '0'));
 
 class ScheduleInputForm extends ConsumerWidget {
   const ScheduleInputForm({super.key});

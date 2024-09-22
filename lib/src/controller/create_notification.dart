@@ -18,7 +18,7 @@ Future<void> setNotificationList() async {
   final scopeList = await getScopeList();
   final scheduleList = await getSchedule();
   final getWordNum = scheduleList.length * notifyDays; // 通知する単語数
-  final wordsList = await getWordsList(scopeList, getWordNum);
+  final wordsMap = await getWordsList(scopeList, getWordNum);
 
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
 
@@ -46,7 +46,7 @@ Future<void> setNotificationList() async {
       await FlutterLocalNotificationsPlugin().zonedSchedule(
         i, // 各通知にユニークなIDを割り当て
         'notivocab', // 通知のタイトル
-        wordsList[i],
+        wordsMap[i]['word'], // 通知のメッセージ
         scheduledDate,
         const NotificationDetails(
           android: AndroidNotificationDetails(
@@ -63,6 +63,7 @@ Future<void> setNotificationList() async {
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
         matchDateTimeComponents: DateTimeComponents.time,
+        payload: '/word_detail_page/${wordsMap[i]['rank']}',
       );
     }
   }
@@ -93,10 +94,11 @@ Future<List<NoticeSchedule>> getSchedule() async {
   return noticeScheduleList;
 }
 
-Future<List<String>> getWordsList(List<String> scopeList, int getNum) async {
+Future<List<Map<String, String>>> getWordsList(
+    List<String> scopeList, int getNum) async {
   final TransactWordsDB transactDB = TransactWordsDB("ngsl_v1_2.db", "words");
-  final List<String> wordsList =
+  final List<Map<String, String>> wordsMap =
       await transactDB.getRandomWords(scopeList, getNum);
 
-  return wordsList;
+  return wordsMap;
 }
