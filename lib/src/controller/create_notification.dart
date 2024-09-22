@@ -56,10 +56,11 @@ Future<void> setNotificationList() async {
                 'This channel is used for multiple notifications',
             importance: Importance.max,
             priority: Priority.high,
+            visibility: NotificationVisibility.public, // 通知の可視性
           ),
           iOS: DarwinNotificationDetails(),
         ),
-        // androidAllowWhileIdle: true, // 省電力モード中でも通知を表示
+        androidScheduleMode: AndroidScheduleMode.alarmClock, // 省電力モード中でも通知を表示
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
         matchDateTimeComponents: DateTimeComponents.time,
