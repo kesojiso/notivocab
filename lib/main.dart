@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:go_router/go_router.dart';
@@ -8,15 +10,6 @@ import 'package:notivocab/src/constants.dart';
 import 'package:notivocab/src/controller/copy_db_from_asset.dart';
 import 'src/router.dart';
 
-@pragma('vm:entry-point') // このデコレーターで、バックグラウンドから呼び出されることを示す
-void notificationTapBackground(NotificationResponse notificationResponse) {
-  // バックグラウンドでの処理
-  String? payload = notificationResponse.payload;
-  if (payload != null && payload.isNotEmpty) {
-    navigatorKey.currentContext?.go(payload); // GoRouterを使った画面遷移など
-  }
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -26,6 +19,11 @@ void main() async {
 
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+  final NotificationAppLaunchDetails? notificationAppLaunchDetails =
+      await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+
+  // final StreamController<String> didReceiveLocalNotificationStream =
+  //   StreamController<String>.broadcast();
 
   // 通知の許可をリクエスト
   await flutterLocalNotificationsPlugin
@@ -39,28 +37,47 @@ void main() async {
       ?.requestExactAlarmsPermission();
   // 通知の初期化
   await flutterLocalNotificationsPlugin.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-        iOS: DarwinInitializationSettings(),
-      ), onDidReceiveNotificationResponse:
-          (NotificationResponse notificationResponse) {
-    String? payload = notificationResponse.payload;
-    if (payload != null && payload.isNotEmpty) {
-      navigatorKey.currentContext?.go(payload);
-    }
-  }, onDidReceiveBackgroundNotificationResponse: notificationTapBackground);
+    const InitializationSettings(
+      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      iOS: DarwinInitializationSettings(),
+    ),
+    onDidReceiveNotificationResponse: notificationTapForeground,
+    onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
+  );
 
-  runApp(const ProviderScope(child: MyApp()));
+  // アプリが通知によって起動されたかを確認し、対応する画面に遷移
+  if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
+    String? payload =
+        notificationAppLaunchDetails!.notificationResponse?.payload;
+    if (payload != null && payload.isNotEmpty) {
+      navigatorKey.currentContext?.go(payload); // GoRouterでの画面遷移
+    }
+  }
+
+  runApp(ProviderScope(child: MyApp(notificationAppLaunchDetails)));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final NotificationAppLaunchDetails? notificationAppLaunchDetails;
+  const MyApp(this.notificationAppLaunchDetails, {super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     for (final dbName in assetDBList) {
       copyDBFromAsset(dbName);
+    }
+    // アプリが通知から起動された場合の処理
+    if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
+      String? payload =
+          notificationAppLaunchDetails?.notificationResponse?.payload;
+      if (payload != null && payload.isNotEmpty) {
+        // 適切な画面に遷移
+        print("moving to $payload");
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          navigatorKey.currentContext?.go(payload); // GoRouterでの画面遷移
+        });
+      }
     }
     return MaterialApp.router(
       routerConfig: router,
@@ -70,4 +87,20 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> notificationTapForeground(
+    NotificationResponse notificationResponse) async {
+  // フォアグラウンドでの処理
+  String? payload = notificationResponse.payload;
+  if (payload != null && payload.isNotEmpty) {
+    print("notification tapped in foreground");
+    print(payload);
+    navigatorKey.currentContext?.go(payload); // GoRouterを使った画面遷移など
+  }
+}
+
+@pragma('vm:entry-point') // このデコレーターで、バックグラウンドから呼び出されることを示す
+void notificationTapBackground(NotificationResponse notificationResponse) {
+  print("start app from notification");
 }
