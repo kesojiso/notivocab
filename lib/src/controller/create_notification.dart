@@ -8,11 +8,6 @@ import 'package:notivocab/src/model/transact_words_db.dart';
 
 const notifyDays = 7; // 通知する日数
 
-/* TDOO
-  1. SharedPreferenceから通知時刻や出題範囲を取得する。
-  2. 出題範囲の中からランダムに番号を選ぶ。
-  3. DBから選ばれた番号に対応する単語を取得し、通知メッセージを作成する。
-*/
 // 通知を複数件スケジュールする
 Future<void> setNotificationList() async {
   final scopeList = await getScopeList();
@@ -25,9 +20,9 @@ Future<void> setNotificationList() async {
 
   await FlutterLocalNotificationsPlugin().cancelAll(); // 設定されている通知をキャンセル
 
-  for (int day = 0; day < notifyDays; day++) {
+  for (int dateDiff = 0; dateDiff < notifyDays; dateDiff++) {
     // notifyDays分の通知をスケジュールする
-    tz.TZDateTime targetDate = now.add(Duration(days: day));
+    tz.TZDateTime targetDate = now.add(Duration(days: dateDiff));
 
     for (int scheduleIdx = 0;
         scheduleIdx < scheduleList.length;
@@ -66,7 +61,7 @@ Future<void> setNotificationList() async {
         androidScheduleMode: AndroidScheduleMode.alarmClock, // 省電力モード中でも通知を表示
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.time,
+        //matchDateTimeComponents: DateTimeComponents.time,
         payload: '/word_detail_page/${wordsMap[notifyIndex]['rank']}',
       );
       notifyIndex++;
