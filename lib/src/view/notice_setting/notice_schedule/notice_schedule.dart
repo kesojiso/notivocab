@@ -68,9 +68,7 @@ class NoticeScheduleSettingPage extends ConsumerWidget {
                                   ],
                                 ),
                               ),
-                              onTap: () {
-                                setNotificationList();
-                              },
+                              onTap: () {},
                             ),
                           );
                         },
