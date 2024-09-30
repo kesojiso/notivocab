@@ -19,23 +19,26 @@ Future<void> setNotificationList() async {
   final scheduleList = await getSchedule();
   final getWordNum = scheduleList.length * notifyDays; // 通知する単語数
   final wordsMap = await getWordsList(scopeList, getWordNum);
+  var notifyIndex = 0;
 
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
 
   await FlutterLocalNotificationsPlugin().cancelAll(); // 設定されている通知をキャンセル
 
-  for (int i = 0; i < notifyDays; i++) {
+  for (int day = 0; day < notifyDays; day++) {
     // notifyDays分の通知をスケジュールする
-    tz.TZDateTime targetDate = now.add(Duration(days: i));
+    tz.TZDateTime targetDate = now.add(Duration(days: day));
 
-    for (int i = 0; i < scheduleList.length; i++) {
+    for (int scheduleIdx = 0;
+        scheduleIdx < scheduleList.length;
+        scheduleIdx++) {
       tz.TZDateTime scheduledDate = tz.TZDateTime(
           tz.local,
           targetDate.year,
           targetDate.month,
           targetDate.day,
-          scheduleList[i].hour!,
-          scheduleList[i].minute!);
+          scheduleList[scheduleIdx].hour!,
+          scheduleList[scheduleIdx].minute!);
 
       // 過ぎた時間の場合は翌日
       if (scheduledDate.isBefore(now)) {
@@ -44,9 +47,9 @@ Future<void> setNotificationList() async {
 
       // 通知をスケジュール（各通知にユニークなIDを付ける）
       await FlutterLocalNotificationsPlugin().zonedSchedule(
-        i, // 各通知にユニークなIDを割り当て
-        'notivocab', // 通知のタイトル
-        wordsMap[i]['word'], // 通知のメッセージ
+        notifyIndex, // 各通知にユニークなIDを割り当て
+        'この英単語の意味はわかるかな？', // 通知のタイトル
+        wordsMap[notifyIndex]['word'], // 通知のメッセージ
         scheduledDate,
         const NotificationDetails(
           android: AndroidNotificationDetails(
@@ -64,8 +67,9 @@ Future<void> setNotificationList() async {
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
         matchDateTimeComponents: DateTimeComponents.time,
-        payload: '/word_detail_page/${wordsMap[i]['rank']}',
+        payload: '/word_detail_page/${wordsMap[notifyIndex]['rank']}',
       );
+      notifyIndex++;
     }
   }
 }
