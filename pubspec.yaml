@@ -21,14 +21,45 @@ dependencies:
   timezone: ^0.9.4
   flutter_native_timezone_updated_gradle: ^2.0.3
   flutter_app_badger: ^1.5.0
+  flutter_native_splash: ^2.4.1
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^4.0.0
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "asset/notivocab-app-icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "asset/notivocab-app-icon.png"
+    background_color: "#001F3D"
+    theme_color: "#001F3D"
+  windows:
+    generate: true
+    image_path: "asset/notivocab-app-icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "asset/notivocab-app-icon.png"
 
+
+# flutter_native_splash:
+#   color: '#add8e6'
+#   image: "asset/notivocab-app-icon.png"
+#   color_dark: '#262626'
+#   image_dark: "asset/notivocab-app-icon.png"
+#   fullscreen: true
+#   android_12:
+#     icon_background_color: '#add8e6'
+#     image: "asset/notivocab-app-icon.png"
+#     icon_background_color_dark: '#262626'
+#     image_dark: "asset/notivocab-app-icon.png"
 
 flutter:
 
@@ -36,6 +67,7 @@ flutter:
   assets:
     - asset/notivocab-icon.png
     - asset/ngsl_v1_2.db
+    - asset/notivocab-app-icon.png
 
   fonts:   
     - family: NotoSansJP
