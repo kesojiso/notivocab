@@ -5,7 +5,7 @@ import 'package:notivocab/src/controller/create_notification.dart';
 import '../../../constants.dart';
 import '../../../controller/provider/setting_notice_schedule.dart';
 import '../../component/warningbox.dart';
-import 'notice_timem_append_form.dart';
+import 'notice_timer_append_form.dart';
 
 class NoticeScheduleSettingPage extends ConsumerWidget {
   const NoticeScheduleSettingPage({super.key});
@@ -68,7 +68,9 @@ class NoticeScheduleSettingPage extends ConsumerWidget {
                                   ],
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                //TODO: 通知スケジュールの編集機能を追加
+                              },
                             ),
                           );
                         },
