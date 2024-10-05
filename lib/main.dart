@@ -45,15 +45,6 @@ void main() async {
     onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
   );
 
-  // アプリが通知によって起動されたかを確認し、対応する画面に遷移
-  if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
-    String? payload =
-        notificationAppLaunchDetails!.notificationResponse?.payload;
-    if (payload != null && payload.isNotEmpty) {
-      navigatorKey.currentContext?.go(payload); // GoRouterでの画面遷移
-    }
-  }
-
   runApp(ProviderScope(child: MyApp(notificationAppLaunchDetails)));
 }
 
@@ -74,9 +65,12 @@ class MyApp extends StatelessWidget {
       if (payload != null && payload.isNotEmpty) {
         // 適切な画面に遷移
         print("moving to $payload");
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          navigatorKey.currentContext?.go(payload); // GoRouterでの画面遷移
-        });
+        WidgetsBinding.instance.addPostFrameCallback(
+          (_) {
+            navigatorKey.currentContext?.go('/');
+            navigatorKey.currentContext?.push(payload); // GoRouterでの画面遷移
+          },
+        );
       }
     }
     return MaterialApp.router(
@@ -96,7 +90,8 @@ Future<void> notificationTapForeground(
   if (payload != null && payload.isNotEmpty) {
     print("notification tapped in foreground");
     print(payload);
-    navigatorKey.currentContext?.go(payload); // GoRouterを使った画面遷移など
+    navigatorKey.currentContext?.push('/');
+    navigatorKey.currentContext?.push(payload); // GoRouterを使った画面遷移など
   }
 }
 
