@@ -29,7 +29,8 @@ class WordSectionPage extends StatelessWidget {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (BuildContext context, int index) {
                     return defaultCard("Section ${snapshot.data![index]}", () {
-                      context.push('/words_list_page',
+                      context.push(
+                          '/word_level_page/word_section_page/words_list_page',
                           extra: snapshot.data![index]);
                     });
                   },

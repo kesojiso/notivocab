@@ -32,7 +32,7 @@ class WordListPage extends StatelessWidget {
                     return wordsListCard(snapshot.data![index]['rank']!,
                         snapshot.data![index]['word']!, () {
                       context.push(
-                        '/word_detail_page/${snapshot.data![index]['rank']}',
+                        '/word_level_page/word_section_page/words_list_page/word_detail_page/${snapshot.data![index]['rank']}',
                       );
                     });
                   },

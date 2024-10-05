@@ -21,74 +21,91 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         return const MyHomePage();
       },
-    ),
-    // 通知設定ページルート
-    GoRoute(
-      path: '/setting_notice',
-      builder: (BuildContext context, GoRouterState state) {
-        return const SettingPage();
-      },
       routes: [
-        // 通知時刻設定ページルート
+        // 通知設定ページルート
         GoRoute(
-          path: 'setting_notice_schedule',
+          path: 'setting_notice',
           builder: (BuildContext context, GoRouterState state) {
-            return const NoticeScheduleSettingPage();
+            return const SettingPage();
+          },
+          routes: [
+            // 通知時刻設定ページルート
+            GoRoute(
+              path: 'setting_notice_schedule',
+              builder: (BuildContext context, GoRouterState state) {
+                return const NoticeScheduleSettingPage();
+              },
+            ),
+            // 出題範囲ページルート
+            GoRoute(
+              path: 'setting_quiz_scope',
+              builder: (BuildContext context, GoRouterState state) {
+                return const QuizScopeSettingPage();
+              },
+            ),
+          ],
+        ),
+        // コース別単語帳ページルート
+        GoRoute(
+          path: 'word_level_page',
+          builder: (BuildContext context, GoRouterState state) {
+            return const WordLevelPage();
+          },
+          routes: [
+            // セクション別ページルート
+            GoRoute(
+              path: 'word_section_page',
+              builder: (BuildContext context, GoRouterState state) {
+                final level = state.extra! as String;
+                return WordSectionPage(level: level);
+              },
+              routes: [
+                // 単語一覧ページルート
+                GoRoute(
+                  path: 'words_list_page',
+                  builder: (BuildContext context, GoRouterState state) {
+                    final section = state.extra! as int;
+                    return WordListPage(section: section);
+                  },
+                  routes: [
+                    // 単語詳細ページルート
+                    GoRoute(
+                      path: 'word_detail_page/:index',
+                      builder: (BuildContext context, GoRouterState state) {
+                        // pathParameters['index'] を int に変換できない場合は 0 とする
+                        final index = int.tryParse(
+                                state.pathParameters['index'] ?? '0') ??
+                            0;
+                        return WordDetailPage(
+                          index: index,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+        // My単語帳ページルート
+        GoRoute(
+          path: 'words_original',
+          builder: (BuildContext context, GoRouterState state) {
+            return const SettingPage();
           },
         ),
-        // 出題範囲ページルート
         GoRoute(
-          path: 'setting_quiz_scope',
+          path: 'word_detail_page/:index',
           builder: (BuildContext context, GoRouterState state) {
-            return const QuizScopeSettingPage();
+            // pathParameters['index'] を int に変換できない場合は 0 とする
+            final index =
+                int.tryParse(state.pathParameters['index'] ?? '0') ?? 0;
+            return WordDetailPage(
+              index: index,
+            );
           },
         ),
       ],
-    ),
-    // コース別単語帳ページルート
-    GoRoute(
-      path: '/word_level_page',
-      builder: (BuildContext context, GoRouterState state) {
-        return const WordLevelPage();
-      },
-      routes: [
-        // セクション別ページルート
-        GoRoute(
-          path: 'word_section_page',
-          builder: (BuildContext context, GoRouterState state) {
-            final level = state.extra! as String;
-            return WordSectionPage(level: level);
-          },
-        ),
-      ],
-    ),
-
-    // 単語一覧ページルート
-    GoRoute(
-      path: '/words_list_page',
-      builder: (BuildContext context, GoRouterState state) {
-        final section = state.extra! as int;
-        return WordListPage(section: section);
-      },
-    ),
-
-    // My単語帳ページルート
-    GoRoute(
-      path: '/words_original',
-      builder: (BuildContext context, GoRouterState state) {
-        return const SettingPage();
-      },
-    ),
-    // 単語詳細ページルート
-    GoRoute(
-      path: '/word_detail_page/:index',
-      builder: (BuildContext context, GoRouterState state) {
-        // pathParameters['index'] を int に変換できない場合は 0 とする
-        final index = int.tryParse(state.pathParameters['index'] ?? '0') ?? 0;
-        return WordDetailPage(
-          index: index,
-        );
-      },
     ),
   ],
 );
