@@ -64,10 +64,8 @@ class MyApp extends StatelessWidget {
           notificationAppLaunchDetails?.notificationResponse?.payload;
       if (payload != null && payload.isNotEmpty) {
         // 適切な画面に遷移
-        print("moving to $payload");
         WidgetsBinding.instance.addPostFrameCallback(
           (_) {
-            navigatorKey.currentContext?.go('/');
             navigatorKey.currentContext?.push(payload); // GoRouterでの画面遷移
           },
         );
@@ -88,14 +86,11 @@ Future<void> notificationTapForeground(
   // フォアグラウンドでの処理
   String? payload = notificationResponse.payload;
   if (payload != null && payload.isNotEmpty) {
-    print("notification tapped in foreground");
-    print(payload);
-    navigatorKey.currentContext?.push('/');
     navigatorKey.currentContext?.push(payload); // GoRouterを使った画面遷移など
   }
 }
 
 @pragma('vm:entry-point') // このデコレーターで、バックグラウンドから呼び出されることを示す
 void notificationTapBackground(NotificationResponse notificationResponse) {
-  print("start app from notification");
+  //print("start app from notification");
 }
