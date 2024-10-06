@@ -33,6 +33,27 @@ class NoticeScheduleNotifier extends StateNotifier<NoticeScheduleState> {
     state = NoticeScheduleState(noticeScheduleList: noticeScheduleList);
   }
 
+  bool editSchedule((String, String) modifiedTimeStr, NoticeSchedule target) {
+    List<NoticeSchedule> noticeScheduleList =
+        List.from(state.noticeScheduleList);
+    NoticeSchedule modifiedTime = NoticeSchedule(
+      hour: int.parse(modifiedTimeStr.$1),
+      minute: int.parse(modifiedTimeStr.$2),
+    );
+    if (!_validateAppendSchedule(modifiedTime)) {
+      return false;
+    }
+    noticeScheduleList.remove(target);
+    noticeScheduleList.add(modifiedTime);
+    noticeScheduleList.sort((a, b) {
+      int result = a.hour!.compareTo(b.hour!);
+      if (result != 0) return result;
+      return a.minute!.compareTo(b.minute!);
+    });
+    state = state.copyWith(noticeScheduleList: noticeScheduleList);
+    return true;
+  }
+
   bool appendSchedule((String, String) appendedTimeStr) {
     List<NoticeSchedule> noticeScheduleList =
         List.from(state.noticeScheduleList);

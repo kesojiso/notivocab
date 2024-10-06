@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notivocab/src/controller/create_notification.dart';
+import 'package:notivocab/src/controller/provider/setting_notice_schedule_input_form.dart';
 import '../../../constants.dart';
 import '../../../controller/provider/setting_notice_schedule.dart';
 import '../../component/warningbox.dart';
-import 'notice_timer_append_form.dart';
+import 'notice_timer_edit_form.dart';
 
 class NoticeScheduleSettingPage extends ConsumerWidget {
   const NoticeScheduleSettingPage({super.key});
@@ -69,14 +70,38 @@ class NoticeScheduleSettingPage extends ConsumerWidget {
                                 ),
                               ),
                               onTap: () {
-                                //TODO: 通知スケジュールの編集機能を追加
+                                ref
+                                    .read(noticeScheduleInputFormProvider
+                                        .notifier)
+                                    .updateSchedule(
+                                        noticeScheduleList[index]
+                                            .hour
+                                            .toString()
+                                            .padLeft(2, '0'),
+                                        noticeScheduleList[index]
+                                            .minute
+                                            .toString()
+                                            .padLeft(2, '0'));
+                                showCustomModalBottomSheet(
+                                    context, ref, noticeScheduleList[index]);
                               },
                             ),
                           );
                         },
                       ),
                     ),
-              const NoticeTimeAppendForm(),
+              Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    backgroundColor: buttonColor,
+                  ),
+                  child: const Icon(Icons.add, color: primaryColor, size: 90),
+                  onPressed: () {
+                    showCustomModalBottomSheet(context, ref, null);
+                  },
+                ),
+              ),
             ],
           ),
         ),
