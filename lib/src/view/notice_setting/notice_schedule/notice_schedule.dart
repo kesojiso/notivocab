@@ -98,6 +98,9 @@ class NoticeScheduleSettingPage extends ConsumerWidget {
                   ),
                   child: const Icon(Icons.add, color: primaryColor, size: 90),
                   onPressed: () {
+                    ref
+                        .read(noticeScheduleInputFormProvider.notifier)
+                        .updateSchedule("12", "00");
                     showCustomModalBottomSheet(context, ref, null);
                   },
                 ),
