@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:go_router/go_router.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -22,9 +23,6 @@ void main() async {
   final NotificationAppLaunchDetails? notificationAppLaunchDetails =
       await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
 
-  // final StreamController<String> didReceiveLocalNotificationStream =
-  //   StreamController<String>.broadcast();
-
   // 通知の許可をリクエスト
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
@@ -44,6 +42,9 @@ void main() async {
     onDidReceiveNotificationResponse: notificationTapForeground,
     onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
   );
+
+  // 広告の初期化
+  MobileAds.instance.initialize();
 
   runApp(ProviderScope(child: MyApp(notificationAppLaunchDetails)));
 }

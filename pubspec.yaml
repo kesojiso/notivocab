@@ -22,6 +22,7 @@ dependencies:
   flutter_native_timezone_updated_gradle: ^2.0.3
   flutter_app_badger: ^1.5.0
   flutter_native_splash: ^2.4.1
+  google_mobile_ads: ^5.1.0
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1

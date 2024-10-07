@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notivocab/src/controller/provider/ad_provider.dart';
 import '../constants.dart';
 import 'component/button.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends ConsumerWidget {
   const MyHomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bannerAd = ref.watch(bannerAdProvider);
     return Scaffold(
       backgroundColor: primaryColor,
       body: SafeArea(
@@ -29,7 +33,13 @@ class MyHomePage extends StatelessWidget {
                     })
                   ],
                 ),
-              )
+              ),
+              if (bannerAd != null)
+                SizedBox(
+                  width: bannerAd.size.width.toDouble(),
+                  height: bannerAd.size.height.toDouble(),
+                  child: AdWidget(ad: bannerAd),
+                ),
             ],
           ),
         ),
