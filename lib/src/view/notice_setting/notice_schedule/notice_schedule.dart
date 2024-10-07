@@ -61,8 +61,7 @@ class NoticeScheduleSettingPage extends ConsumerWidget {
                                           ref
                                               .read(noticeScheduleProvider
                                                   .notifier)
-                                              .remoevSchedule(
-                                                  noticeScheduleList[index]);
+                                              .remoevSchedule(index);
                                         },
                                         child: const Icon(Icons.delete,
                                             color: primaryColor, size: 30)),
@@ -82,8 +81,7 @@ class NoticeScheduleSettingPage extends ConsumerWidget {
                                             .minute
                                             .toString()
                                             .padLeft(2, '0'));
-                                showCustomModalBottomSheet(
-                                    context, ref, noticeScheduleList[index]);
+                                showCustomModalBottomSheet(context, ref, index);
                               },
                             ),
                           );

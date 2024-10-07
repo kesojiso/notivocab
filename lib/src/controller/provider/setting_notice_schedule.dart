@@ -33,7 +33,7 @@ class NoticeScheduleNotifier extends StateNotifier<NoticeScheduleState> {
     state = NoticeScheduleState(noticeScheduleList: noticeScheduleList);
   }
 
-  bool editSchedule((String, String) modifiedTimeStr, NoticeSchedule target) {
+  bool editSchedule((String, String) modifiedTimeStr, int editIndex) {
     List<NoticeSchedule> noticeScheduleList =
         List.from(state.noticeScheduleList);
     NoticeSchedule modifiedTime = NoticeSchedule(
@@ -43,8 +43,7 @@ class NoticeScheduleNotifier extends StateNotifier<NoticeScheduleState> {
     if (!_validateAppendSchedule(modifiedTime)) {
       return false;
     }
-    noticeScheduleList.remove(target);
-    noticeScheduleList.add(modifiedTime);
+    noticeScheduleList[editIndex] = modifiedTime;
     noticeScheduleList.sort((a, b) {
       int result = a.hour!.compareTo(b.hour!);
       if (result != 0) return result;
@@ -91,10 +90,10 @@ class NoticeScheduleNotifier extends StateNotifier<NoticeScheduleState> {
     return noticeScheduleList;
   }
 
-  void remoevSchedule(NoticeSchedule removedTime) {
+  void remoevSchedule(int removeIndex) {
     List<NoticeSchedule> noticeScheduleList =
         List.from(state.noticeScheduleList);
-    noticeScheduleList.remove(removedTime);
+    noticeScheduleList.removeAt(removeIndex);
     noticeScheduleList.sort((a, b) {
       int result = a.hour!.compareTo(b.hour!);
       if (result != 0) return result;

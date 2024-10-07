@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notivocab/src/model/schema/schema_notice_schedule.dart';
 import '../../../constants.dart';
 import 'schedle_dropdown_menu.dart';
 import '../../../controller/provider/setting_notice_schedule.dart';
 import '../../../controller/provider/setting_notice_schedule_input_form.dart';
 
 void showCustomModalBottomSheet(
-    BuildContext context, WidgetRef ref, NoticeSchedule? targetSchedule) {
+    BuildContext context, WidgetRef ref, int? targetIndex) {
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
@@ -25,7 +24,7 @@ void showCustomModalBottomSheet(
                 child: const Text('追加'),
                 onPressed: () {
                   bool isSuccess;
-                  if (targetSchedule == null) {
+                  if (targetIndex == null) {
                     // Append schedule
                     isSuccess = ref
                         .read(noticeScheduleProvider.notifier)
@@ -39,7 +38,7 @@ void showCustomModalBottomSheet(
                         ref.read(noticeScheduleProvider.notifier).editSchedule((
                       ref.watch(noticeScheduleInputFormProvider).hour,
                       ref.watch(noticeScheduleInputFormProvider).minute,
-                    ), targetSchedule);
+                    ), targetIndex);
                   }
 
                   if (!isSuccess) {
