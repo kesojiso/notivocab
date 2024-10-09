@@ -21,6 +21,7 @@ class AdHelper {
       throw new UnsupportedError('Unsupported platform');
     }
   }
+
   // static String get interstitialAdUnitId {
   //   if (Platform.isAndroid) {
   //     return '<YOUR_ANDROID_INTERSTITIAL_AD_UNIT_ID>';

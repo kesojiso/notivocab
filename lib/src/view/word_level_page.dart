@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notivocab/src/view/component/banner_ad.dart';
 import '../constants.dart';
 import 'component/button.dart';
 
-class WordLevelPage extends StatelessWidget {
+class WordLevelPage extends ConsumerWidget {
   const WordLevelPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: primaryColor,
       appBar: AppBar(
         title: Title(
           color: primaryColor,
-          child: const Text('コース別単語帳'),
+          child: const Text('レベル別単語帳'),
         ),
       ),
       body: SafeArea(
@@ -39,11 +41,12 @@ class WordLevelPage extends StatelessWidget {
                     }),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: const AdBannerWidget(),
     );
   }
 }
