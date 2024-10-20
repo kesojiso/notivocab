@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../constants.dart';
 import '../component/button.dart';
-import 'package:notivocab/src/view/component/banner_ad.dart';
+import 'package:notivocab/src/feature/ads/view/banner_ad.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});

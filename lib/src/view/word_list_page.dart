@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:notivocab/src/model/transact_words_db.dart';
 import '../constants.dart';
 import 'component/card.dart';
-import 'package:notivocab/src/view/component/banner_ad.dart';
+import 'package:notivocab/src/feature/ads/view/banner_ad.dart';
 
 class WordListPage extends StatelessWidget {
   final int section;

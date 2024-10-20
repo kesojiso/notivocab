@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notivocab/src/constants.dart';
 import 'package:notivocab/src/model/transact_words_db.dart';
 import 'package:notivocab/src/view/component/card.dart';
-import 'package:notivocab/src/view/component/banner_ad.dart';
+import 'package:notivocab/src/feature/ads/view/banner_ad.dart';
 
 class WordDetailPage extends StatelessWidget {
   final int index;
