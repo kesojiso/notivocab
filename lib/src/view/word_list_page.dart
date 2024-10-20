@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:notivocab/src/model/transact_words_db.dart';
-import '../constants.dart';
+import '../core/constants.dart';
 import 'component/card.dart';
 import 'package:notivocab/src/feature/ads/view/banner_ad.dart';
 

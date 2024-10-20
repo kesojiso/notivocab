@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notivocab/src/constants.dart';
+import 'package:notivocab/src/core/constants.dart';
 import 'package:notivocab/src/model/transact_words_db.dart';
 import 'package:notivocab/src/view/component/card.dart';
 import 'package:notivocab/src/feature/ads/view/banner_ad.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notivocab/src/constants.dart';
+import 'package:notivocab/src/core/constants.dart';
 import '../../../controller/provider/setting_notice_schedule_input_form.dart';
 
 final List<String> hours =

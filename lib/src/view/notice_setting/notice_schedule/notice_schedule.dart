@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notivocab/src/controller/create_notification.dart';
 import 'package:notivocab/src/controller/provider/setting_notice_schedule_input_form.dart';
-import '../../../constants.dart';
+import '../../../core/constants.dart';
 import '../../../controller/provider/setting_notice_schedule.dart';
 import '../../component/warningbox.dart';
 import 'notice_timer_edit_form.dart';

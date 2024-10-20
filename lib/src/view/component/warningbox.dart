@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notivocab/src/constants.dart';
+import 'package:notivocab/src/core/constants.dart';
 
 class Warningbox extends StatelessWidget {
   final String titleText;

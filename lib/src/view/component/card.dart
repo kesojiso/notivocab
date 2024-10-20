@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notivocab/src/constants.dart';
+import 'package:notivocab/src/core/constants.dart';
 
 Card defaultCard(String text, void Function()? onPressed) {
   return Card(
