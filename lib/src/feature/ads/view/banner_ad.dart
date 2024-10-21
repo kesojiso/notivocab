@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:notivocab/src/feature/ads/model/ad_helper.dart';
+import 'package:notivocab/src/feature/ads/controller/ad_helper.dart';
 
 class AdBannerWidget extends StatefulWidget {
   const AdBannerWidget({super.key});
