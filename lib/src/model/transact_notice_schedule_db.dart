@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'package:notivocab/src/model/schema/schema_notice_schedule.dart';
+import 'package:notivocab/src/schema/schema_notice_schedule.dart';
 
 class TransactNoticeScheduleDB {
   // 唯一のインスタンスを保持する静的な変数

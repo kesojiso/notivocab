@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notivocab/src/model/schema/schema_notice_schedule.dart';
+import 'package:notivocab/src/schema/schema_notice_schedule.dart';
 import 'package:notivocab/src/model/transact_notice_schedule_db.dart';
 
 final noticeScheduleProvider =

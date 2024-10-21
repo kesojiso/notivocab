@@ -1,6 +1,6 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:notivocab/src/model/schema/schema_quiz_scope.dart';
-import 'package:notivocab/src/model/schema/schema_notice_schedule.dart';
+import 'package:notivocab/src/schema/schema_quiz_scope.dart';
+import 'package:notivocab/src/schema/schema_notice_schedule.dart';
 import 'package:notivocab/src/model/transact_notice_schedule_db.dart';
 import 'package:notivocab/src/model/transact_quiz_scope_db.dart';
 import 'package:timezone/timezone.dart' as tz;
