@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants.dart';
 import 'schedle_dropdown_menu.dart';
-import '../../../feature/setting_notice_scehdule/controller/setting_notice_schedule.dart';
-import '../../../feature/setting_notice_scehdule/controller/setting_notice_schedule_input_form.dart';
+import '../controller/setting_notice_schedule.dart';
+import '../controller/setting_notice_schedule_input_form.dart';
 
 void showCustomModalBottomSheet(
     BuildContext context, WidgetRef ref, int? targetIndex) {
