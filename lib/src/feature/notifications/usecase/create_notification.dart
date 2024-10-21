@@ -4,7 +4,7 @@ import 'package:notivocab/src/schema/schema_notice_schedule.dart';
 import 'package:notivocab/src/feature/setting/repository/transact_notice_schedule_db.dart';
 import 'package:notivocab/src/feature/setting/repository/transact_quiz_scope_db.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:notivocab/src/feature/common/repository/transact_words_db.dart';
+import 'package:notivocab/src/feature/words/repository/transact_words_db.dart';
 
 const notifyDays = 7; // 通知する日数
 

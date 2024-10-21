@@ -1,12 +1,12 @@
 // router.dart
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:notivocab/src/view/word_detail_page.dart';
-import 'package:notivocab/src/view/word_section_page.dart';
-import 'package:notivocab/src/view/word_level_page.dart';
-import 'package:notivocab/src/view/word_list_page.dart';
-import '../view/homepage.dart';
-import '../view/notice_setting/settingpage_top.dart';
+import 'package:notivocab/src/feature/words/view/word_detail_page.dart';
+import 'package:notivocab/src/feature/words/view/word_section_page.dart';
+import 'package:notivocab/src/feature/words/view/word_level_page.dart';
+import 'package:notivocab/src/feature/words/view/word_list_page.dart';
+import '../feature/words/view/homepage.dart';
+import '../feature/setting/view/settingpage_top.dart';
 import '../feature/setting/view/quiz_scope.dart';
 import '../feature/setting/view/notice_schedule.dart';
 
