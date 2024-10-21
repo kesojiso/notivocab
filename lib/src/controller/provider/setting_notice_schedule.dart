@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notivocab/src/schema/schema_notice_schedule.dart';
-import 'package:notivocab/src/model/transact_notice_schedule_db.dart';
+import 'package:notivocab/src/feature/setting_notice_scehdule/repository/transact_notice_schedule_db.dart';
 
 final noticeScheduleProvider =
     StateNotifierProvider<NoticeScheduleNotifier, NoticeScheduleState>((ref) {
