@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:notivocab/src/controller/create_notification.dart';
+import 'package:notivocab/src/feature/notifications/usecase/create_notification.dart';
 import 'package:notivocab/src/schema/schema_quiz_scope.dart';
 import 'package:notivocab/src/view/component/card.dart';
 import '../../../core/constants.dart';
-import '../../../controller/provider/setting_quiz_scope.dart';
+import '../../../feature/setting_quiz_scope/controller/setting_quiz_scope.dart';
 
 class QuizScopeSettingPage extends ConsumerWidget {
   const QuizScopeSettingPage({super.key});

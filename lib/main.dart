@@ -8,7 +8,7 @@ import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notivocab/src/core/constants.dart';
-import 'package:notivocab/src/controller/copy_db_from_asset.dart';
+import 'package:notivocab/src/feature/common/repository/copy_db_from_asset.dart';
 import 'src/core/router.dart';
 
 void main() async {

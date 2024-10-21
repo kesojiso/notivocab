@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notivocab/src/controller/copy_db_from_asset.dart';
+import 'package:notivocab/src/feature/common/repository/copy_db_from_asset.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
