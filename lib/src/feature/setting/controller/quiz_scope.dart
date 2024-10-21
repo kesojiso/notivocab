@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notivocab/src/schema/schema_quiz_scope.dart';
-import 'package:notivocab/src/feature/setting_quiz_scope/repository/transact_quiz_scope_db.dart';
+import 'package:notivocab/src/feature/setting/repository/transact_quiz_scope_db.dart';
 
 final scopeSelectedProvider =
     StateNotifierProvider<ScopeSelectedNotifier, ScopeSelectedState>((ref) {

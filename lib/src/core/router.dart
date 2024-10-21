@@ -7,8 +7,8 @@ import 'package:notivocab/src/view/word_level_page.dart';
 import 'package:notivocab/src/view/word_list_page.dart';
 import '../view/homepage.dart';
 import '../view/notice_setting/settingpage_top.dart';
-import '../feature/setting_quiz_scope/view/settingpage_quiz_scope.dart';
-import '../feature/setting_notice_scehdule/view/notice_schedule.dart';
+import '../feature/setting/view/quiz_scope.dart';
+import '../feature/setting/view/notice_schedule.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

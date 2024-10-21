@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notivocab/src/feature/notifications/usecase/create_notification.dart';
-import 'package:notivocab/src/feature/setting_notice_scehdule/controller/setting_notice_schedule_input_form.dart';
+import 'package:notivocab/src/feature/setting/controller/notice_schedule_input_form.dart';
 import '../../../core/constants.dart';
-import '../controller/setting_notice_schedule.dart';
+import '../controller/notice_schedule.dart';
 import '../../common/view/component/warningbox.dart';
-import 'notice_timer_edit_form.dart';
+import 'notice_schedule_timer_edit_form.dart';
 
 class NoticeScheduleSettingPage extends ConsumerWidget {
   const NoticeScheduleSettingPage({super.key});

@@ -5,7 +5,7 @@ import 'package:notivocab/src/feature/notifications/usecase/create_notification.
 import 'package:notivocab/src/schema/schema_quiz_scope.dart';
 import 'package:notivocab/src/feature/common/view/component/card.dart';
 import '../../../core/constants.dart';
-import '../controller/setting_quiz_scope.dart';
+import '../controller/quiz_scope.dart';
 
 class QuizScopeSettingPage extends ConsumerWidget {
   const QuizScopeSettingPage({super.key});
